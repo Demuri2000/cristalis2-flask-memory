@@ -3,7 +3,6 @@ import os
 import json
 
 app = Flask(__name__)
-
 MEMORY_FILE = "public_memory.json"
 
 @app.route("/")
@@ -19,7 +18,7 @@ def get_memory():
 @app.route("/upload", methods=["POST"])
 def upload_memory():
     try:
-        content = request.get_json()
+        content = request.get_json(force=True)
         if not content:
             return jsonify({"error": "No JSON received."}), 400
 
